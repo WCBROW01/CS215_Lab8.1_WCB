@@ -7,7 +7,7 @@
 public class DFS {
 	
 	private static int height;
-	private static int numNodesTraversed;
+	private static int nodesTraversed;
 	
 	/**
 	 * Begins traversal of the tree. Once it is finished,
@@ -17,9 +17,9 @@ public class DFS {
 	 */
 	public static void startTraversal(Tree aTree) {
 		height = 0;
-		numNodesTraversed = 0;
+		nodesTraversed = 0;
 		dfs(aTree.getRoot(), 1);
-		System.out.println("Nodes traversed: " + numNodesTraversed);
+		System.out.println("Nodes traversed: " + nodesTraversed);
 		System.out.println("Height of tree: " + height);
 	}
 	
@@ -30,14 +30,15 @@ public class DFS {
 	 * @param currentHeight the height of the current node
 	 */
 	private static void dfs(Node currentNode, int currentHeight) {
-		numNodesTraversed++;
+		nodesTraversed++;
 		if (currentHeight > height) {
 			height = currentHeight;
 		}
 		
 		System.out.println("Traversing node: " + currentNode.getData());
 		
-		// Children will only be traversed if they exist
+		/* Children will only be traversed if they exist,
+		 * so this implicitly accounts for leaf nodes. */
 		if (currentNode.getlChild() != null) {
 			dfs(currentNode.getlChild(), currentHeight + 1);
 		}
